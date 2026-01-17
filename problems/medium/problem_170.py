@@ -1,25 +1,24 @@
 """
-Problem 170: Dictionary get with mutable default value
-Error Type: LOGICAL
+Problem 170: Simple Inventory Manager
+Error Type: KEY_ERROR
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Count character frequencies in a string
-# Expected Output: Correct frequency count
+# Problem: Update an item count in an inventory, but the item doesn't exist.
+# Expected Output: Should handle the missing item gracefully, e.g., by adding it.
 
-def count_chars(text):
-    freq = {}
-    for char in text:
-        freq[char] = freq.get(char, 0) + 1
-    return freq
+inventory = {"apples": 10, "bananas": 20}
 
-result = count_chars("hello")
-print(result)  # This works, but try with edge cases
+def update_stock(item, quantity):
+    inventory[item] += quantity # Fails if item is not in inventory
+    print(f"Updated {item} to {inventory[item]}")
+
+update_stock("oranges", 5)
+print(inventory)

@@ -1,41 +1,33 @@
 """
-Problem 222: Async iterator with improper resource management
+Problem 222: Simple Bank Account (Class)
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement async file reader
-# Expected Output: Should read file asynchronously and close properly
+# Problem: A BankAccount class that allows overdrafts due to a logic flaw.
+# Expected Output: "Error: Insufficient funds."
 
-import asyncio
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
 
-class AsyncFileReader:
-    def __init__(self, filename):
-        self.filename = filename
-        self.file = None
-        
-    async def __aiter__(self):
-        self.file = open(self.filename, 'r')
-        return self
-        
-    async def __anext__(self):
-        line = self.file.readline()
-        if not line:
-            self.file.close()
-            raise StopAsyncIteration
-        return line.strip()
+    def deposit(self, amount):
+        self.balance += amount
 
-# This async iterator has issues with cleanup on exceptions
-async def read_file():
-    async for line in AsyncFileReader("data.txt"):
-        print(line)
+    def withdraw(self, amount):
+        if amount < self.balance: # Should be <=
+            self.balance -= amount
+            print("Withdrawal successful.")
+        else:
+            print("Error: Insufficient funds.")
 
-# asyncio.run(read_file())  # Uncomment to test
+acc = BankAccount(100)
+acc.withdraw(100) # This should be allowed
+acc.withdraw(1)   # This should fail

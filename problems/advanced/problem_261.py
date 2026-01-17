@@ -1,32 +1,37 @@
 """
-Problem 261: Metaclass attribute resolution order
+Problem 261: Configuration File Parser
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement a singleton pattern with metaclass
-# Expected Output: Same instance should be returned each time
+# Problem: A script to parse a simple .ini style config file, but it handles sections incorrectly.
+# Expected Output: {'user': {'name': 'alice'}, 'database': {'host': 'localhost'}}
 
-class Singleton(type):
-    _instances = {}
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
-        return cls._instances[cls]
+config_text = """
+[user]
+name = alice
+[database]
+host = localhost
+"""
+def parse_config(text):
+    config = {}
+    current_section = None
+    for line in text.strip().split('\n'):
+        line = line.strip()
+        if line.startswith('[') and line.endswith(']'):
+            current_section = line[1:-1]
+            config[current_section] = {}
+        elif '=' in line and current_section:
+            key, value = line.split('=', 1)
+            # Logical error: assigns to the same dict every time
+            config[key.strip()] = value.strip()
+    return config
 
-class Database(metaclass=Singleton):
-    def __init__(self):
-        self.connection = "Connected"
-
-db1 = Database()
-db2 = Database()
-print(db1 is db2)  # Should be True
-print(id(db1), id(db2))  # Should be same
+print(parse_config(config_text))

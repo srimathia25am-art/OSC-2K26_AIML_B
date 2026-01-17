@@ -1,23 +1,31 @@
 """
-Problem 193: List slicing boundary error
+Problem 193: Student Grade Calculator
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Get last 3 elements of a list
-# Expected Output: [30, 40, 50]
+# Problem: Calculate a student's final grade, but the grading scale is wrong.
+# Expected Output: "Grade: B"
 
-numbers = [10, 20, 30, 40, 50]
-last_three = numbers[-3:]
-print(last_three)
-# But what about getting first 3?
-first_three = numbers[:3]
-print(first_three)  # This works, but is the slice correct for last_three?
+scores = [85, 90, 88, 92]
+average = sum(scores) / len(scores)
+
+def get_grade(avg):
+    if avg >= 90:
+        return "A"
+    elif avg > 80: # Should be >= 80
+        return "B"
+    elif avg >= 70:
+        return "C"
+    else:
+        return "F"
+
+grade = get_grade(average)
+print(f"Grade: {grade}")

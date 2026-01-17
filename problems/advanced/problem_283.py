@@ -1,47 +1,33 @@
 """
-Problem 283: Property with side effects and caching
+Problem 283: Simple Bank Account (Class)
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement cached property with proper invalidation
-# Expected Output: Should cache result but allow invalidation
+# Problem: A BankAccount class that allows overdrafts due to a logic flaw.
+# Expected Output: "Error: Insufficient funds."
 
-class CachedProperty:
-    def __init__(self, func):
-        self.func = func
-        self.cache = {}
-        
-    def __get__(self, obj, objtype=None):
-        if obj is None:
-            return self
-        if obj not in self.cache:
-            self.cache[obj] = self.func(obj)
-        return self.cache[obj]
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
 
-class DataProcessor:
-    def __init__(self, data):
-        self._data = data
-        
-    @CachedProperty
-    def processed(self):
-        print("Processing data...")
-        return [x * 2 for x in self._data]
-    
-    def update_data(self, new_data):
-        self._data = new_data
-        # Cache not invalidated!
+    def deposit(self, amount):
+        self.balance += amount
 
-# Test - cache invalidation issue
-proc = DataProcessor([1, 2, 3])
-print(proc.processed)
-proc.update_data([4, 5, 6])
-print(proc.processed)  # Should reflect new data
+    def withdraw(self, amount):
+        if amount < self.balance: # Should be <=
+            self.balance -= amount
+            print("Withdrawal successful.")
+        else:
+            print("Error: Insufficient funds.")
+
+acc = BankAccount(100)
+acc.withdraw(100) # This should be allowed
+acc.withdraw(1)   # This should fail

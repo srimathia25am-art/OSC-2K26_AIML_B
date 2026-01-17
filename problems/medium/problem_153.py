@@ -1,21 +1,29 @@
 """
-Problem 153: List append vs extend confusion
+Problem 153: Contact Book Search
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Combine multiple lists into one flat list
-# Expected Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# Problem: Search for a contact by name, but the loop returns the wrong one.
+# Expected Output: {'name': 'Bob', 'phone': '555-0102'}
 
-result = [1, 2, 3]
-result.append([4, 5, 6])
-result.append([7, 8, 9])
-print(result)
+contacts = [
+    {'name': 'Alice', 'phone': '555-0101'},
+    {'name': 'Bob', 'phone': '555-0102'},
+]
+
+def find_contact(name):
+    for contact in contacts:
+        if name in contact['name']:
+            return contact # Returns Alice for "Bob" because "b" is not in "Alice"
+    return None
+
+found = find_contact("Bob")
+print(found)

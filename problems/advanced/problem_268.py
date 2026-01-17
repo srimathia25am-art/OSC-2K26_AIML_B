@@ -1,47 +1,34 @@
 """
-Problem 268: Property with side effects and caching
+Problem 268: Hangman Game Logic
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement cached property with proper invalidation
-# Expected Output: Should cache result but allow invalidation
+# Problem: The core logic for a Hangman game that doesn't reveal all instances of a letter.
+# Expected Output: "_pp_e"
 
-class CachedProperty:
-    def __init__(self, func):
-        self.func = func
-        self.cache = {}
-        
-    def __get__(self, obj, objtype=None):
-        if obj is None:
-            return self
-        if obj not in self.cache:
-            self.cache[obj] = self.func(obj)
-        return self.cache[obj]
+secret_word = "apple"
+guessed_letters = ['p', 'e']
+display = ""
 
-class DataProcessor:
-    def __init__(self, data):
-        self._data = data
-        
-    @CachedProperty
-    def processed(self):
-        print("Processing data...")
-        return [x * 2 for x in self._data]
-    
-    def update_data(self, new_data):
-        self._data = new_data
-        # Cache not invalidated!
+for letter in secret_word:
+    if letter in guessed_letters:
+        display += letter
+    else:
+        display += "_"
+# The loop is fine, but let's introduce a common mistake in game logic
+# For example, what if we only replace the *first* instance?
+display_word = "_" * len(secret_word)
+for letter in guessed_letters:
+    if letter in secret_word:
+        index = secret_word.find(letter)
+        display_word = display_word[:index] + letter + display_word[index+1:]
 
-# Test - cache invalidation issue
-proc = DataProcessor([1, 2, 3])
-print(proc.processed)
-proc.update_data([4, 5, 6])
-print(proc.processed)  # Should reflect new data
+print(display_word) # This logic is flawed for repeated letters

@@ -1,42 +1,33 @@
 """
-Problem 292: Decorator with arguments and state
+Problem 292: Simple Bank Account (Class)
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Create a retry decorator with exponential backoff
-# Expected Output: Function should retry on failure with increasing delays
+# Problem: A BankAccount class that allows overdrafts due to a logic flaw.
+# Expected Output: "Error: Insufficient funds."
 
-import time
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
 
-def retry(max_attempts=3):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            for attempt in range(max_attempts):
-                try:
-                    return func(*args, **kwargs)
-                except Exception as e:
-                    if attempt == max_attempts - 1:
-                        raise
-                    time.sleep(2 ** attempt)
-        return wrapper
-    return decorator
+    def deposit(self, amount):
+        self.balance += amount
 
-@retry(max_attempts=3)
-def unreliable_function():
-    import random
-    if random.random() < 0.7:
-        raise ValueError("Random failure")
-    return "Success"
+    def withdraw(self, amount):
+        if amount < self.balance: # Should be <=
+            self.balance -= amount
+            print("Withdrawal successful.")
+        else:
+            print("Error: Insufficient funds.")
 
-# Test it - but there's a subtle bug with the attempts
-result = unreliable_function()
-print(result)
+acc = BankAccount(100)
+acc.withdraw(100) # This should be allowed
+acc.withdraw(1)   # This should fail

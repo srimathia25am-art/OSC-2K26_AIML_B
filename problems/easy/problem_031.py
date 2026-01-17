@@ -1,25 +1,20 @@
 """
-Problem 31: Missing colon after if statement
-Error Type: SYNTAX
+Problem 31: String Repeater
+Error Type: TYPE
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Calculate if a number is even or odd
-# Expected Output: "Even" for even numbers, "Odd" for odd numbers
+# Problem: Repeat a string multiple times, but the multiplier is a string.
+# Expected Output: "ababab"
 
-def check_even_odd(number)
-    if number % 2 == 0:
-        return "Even"
-    else:
-        return "Odd"
-
-result = check_even_odd(10)
+text = "ab"
+times = "3"
+result = text * times
 print(result)

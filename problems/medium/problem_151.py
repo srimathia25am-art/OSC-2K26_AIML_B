@@ -1,23 +1,31 @@
 """
-Problem 151: Lambda function with late binding
+Problem 151: Student Grade Calculator
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Create functions that multiply by 1, 2, 3
-# Expected Output: [10, 20, 30]
+# Problem: Calculate a student's final grade, but the grading scale is wrong.
+# Expected Output: "Grade: B"
 
-multipliers = []
-for i in [1, 2, 3]:
-    multipliers.append(lambda x: x * i)
+scores = [85, 90, 88, 92]
+average = sum(scores) / len(scores)
 
-results = [func(10) for func in multipliers]
-print(results)
+def get_grade(avg):
+    if avg >= 90:
+        return "A"
+    elif avg > 80: # Should be >= 80
+        return "B"
+    elif avg >= 70:
+        return "C"
+    else:
+        return "F"
+
+grade = get_grade(average)
+print(f"Grade: {grade}")

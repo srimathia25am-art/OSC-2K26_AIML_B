@@ -1,23 +1,25 @@
 """
-Problem 118: List slicing boundary error
-Error Type: LOGICAL
+Problem 118: File Word Counter
+Error Type: FILE_NOT_FOUND
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Get last 3 elements of a list
-# Expected Output: [30, 40, 50]
+# Problem: Read a file and count words, but the file path is wrong.
+# Expected Output: Should handle the FileNotFoundError.
 
-numbers = [10, 20, 30, 40, 50]
-last_three = numbers[-3:]
-print(last_three)
-# But what about getting first 3?
-first_three = numbers[:3]
-print(first_three)  # This works, but is the slice correct for last_three?
+def count_words_in_file(filename):
+    try:
+        with open(filename, 'r') as f:
+            words = f.read().split()
+            print(f"Word count: {len(words)}")
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+
+count_words_in_file("data.txt") # Assumes this file doesn't exist

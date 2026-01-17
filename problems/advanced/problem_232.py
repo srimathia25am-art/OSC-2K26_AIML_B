@@ -1,42 +1,34 @@
 """
-Problem 232: Decorator with arguments and state
+Problem 232: Hangman Game Logic
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Create a retry decorator with exponential backoff
-# Expected Output: Function should retry on failure with increasing delays
+# Problem: The core logic for a Hangman game that doesn't reveal all instances of a letter.
+# Expected Output: "_pp_e"
 
-import time
+secret_word = "apple"
+guessed_letters = ['p', 'e']
+display = ""
 
-def retry(max_attempts=3):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            for attempt in range(max_attempts):
-                try:
-                    return func(*args, **kwargs)
-                except Exception as e:
-                    if attempt == max_attempts - 1:
-                        raise
-                    time.sleep(2 ** attempt)
-        return wrapper
-    return decorator
+for letter in secret_word:
+    if letter in guessed_letters:
+        display += letter
+    else:
+        display += "_"
+# The loop is fine, but let's introduce a common mistake in game logic
+# For example, what if we only replace the *first* instance?
+display_word = "_" * len(secret_word)
+for letter in guessed_letters:
+    if letter in secret_word:
+        index = secret_word.find(letter)
+        display_word = display_word[:index] + letter + display_word[index+1:]
 
-@retry(max_attempts=3)
-def unreliable_function():
-    import random
-    if random.random() < 0.7:
-        raise ValueError("Random failure")
-    return "Success"
-
-# Test it - but there's a subtle bug with the attempts
-result = unreliable_function()
-print(result)
+print(display_word) # This logic is flawed for repeated letters

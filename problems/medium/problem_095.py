@@ -1,25 +1,29 @@
 """
-Problem 95: Dictionary get with mutable default value
+Problem 95: Contact Book Search
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Count character frequencies in a string
-# Expected Output: Correct frequency count
+# Problem: Search for a contact by name, but the loop returns the wrong one.
+# Expected Output: {'name': 'Bob', 'phone': '555-0102'}
 
-def count_chars(text):
-    freq = {}
-    for char in text:
-        freq[char] = freq.get(char, 0) + 1
-    return freq
+contacts = [
+    {'name': 'Alice', 'phone': '555-0101'},
+    {'name': 'Bob', 'phone': '555-0102'},
+]
 
-result = count_chars("hello")
-print(result)  # This works, but try with edge cases
+def find_contact(name):
+    for contact in contacts:
+        if name in contact['name']:
+            return contact # Returns Alice for "Bob" because "b" is not in "Alice"
+    return None
+
+found = find_contact("Bob")
+print(found)

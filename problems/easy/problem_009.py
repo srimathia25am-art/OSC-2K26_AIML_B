@@ -1,19 +1,19 @@
 """
-Problem 9: Missing quotes around string
-Error Type: SYNTAX
+Problem 9: List Reverser
+Error Type: ATTRIBUTE
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Store and print a name
-# Expected Output: Name: Alice
+# Problem: Reverse a list, but call a non-existent method.
+# Expected Output: [3, 2, 1]
 
-name = Alice
-print(f"Name: {name}")
+my_list = [1, 2, 3]
+my_list.revers() # Typo in method name
+print(my_list)

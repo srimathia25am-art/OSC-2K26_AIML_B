@@ -1,35 +1,37 @@
 """
-Problem 260: Dynamic class creation with type()
+Problem 260: Configuration File Parser
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Create classes dynamically with proper initialization
-# Expected Output: Dynamically created class should work like normal class
+# Problem: A script to parse a simple .ini style config file, but it handles sections incorrectly.
+# Expected Output: {'user': {'name': 'alice'}, 'database': {'host': 'localhost'}}
 
-def create_class(name, base_value):
-    def __init__(self, value):
-        self.value = value + base_value
-    
-    def get_value(self):
-        return self.value
-    
-    return type(name, (), {
-        '__init__': __init__,
-        'get_value': get_value,
-        'base': base_value
-    })
+config_text = """
+[user]
+name = alice
+[database]
+host = localhost
+"""
+def parse_config(text):
+    config = {}
+    current_section = None
+    for line in text.strip().split('\n'):
+        line = line.strip()
+        if line.startswith('[') and line.endswith(']'):
+            current_section = line[1:-1]
+            config[current_section] = {}
+        elif '=' in line and current_section:
+            key, value = line.split('=', 1)
+            # Logical error: assigns to the same dict every time
+            config[key.strip()] = value.strip()
+    return config
 
-# Create and use dynamic class - method binding issue?
-MyClass = create_class('MyClass', 10)
-obj = MyClass(5)
-print(obj.get_value())  # Should be 15
-print(obj.base)         # Should be 10
+print(parse_config(config_text))

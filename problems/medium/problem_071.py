@@ -1,22 +1,29 @@
 """
-Problem 71: Dictionary modification during iteration
+Problem 71: Contact Book Search
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Remove all items with value less than 5
-# Expected Output: {'c': 5, 'd': 10}
+# Problem: Search for a contact by name, but the loop returns the wrong one.
+# Expected Output: {'name': 'Bob', 'phone': '555-0102'}
 
-data = {'a': 1, 'b': 3, 'c': 5, 'd': 10}
-for key in data:
-    if data[key] < 5:
-        del data[key]
-print(data)
+contacts = [
+    {'name': 'Alice', 'phone': '555-0101'},
+    {'name': 'Bob', 'phone': '555-0102'},
+]
+
+def find_contact(name):
+    for contact in contacts:
+        if name in contact['name']:
+            return contact # Returns Alice for "Bob" because "b" is not in "Alice"
+    return None
+
+found = find_contact("Bob")
+print(found)

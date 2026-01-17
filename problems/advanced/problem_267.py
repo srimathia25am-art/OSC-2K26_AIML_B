@@ -1,41 +1,34 @@
 """
-Problem 267: Async iterator with improper resource management
+Problem 267: Hangman Game Logic
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement async file reader
-# Expected Output: Should read file asynchronously and close properly
+# Problem: The core logic for a Hangman game that doesn't reveal all instances of a letter.
+# Expected Output: "_pp_e"
 
-import asyncio
+secret_word = "apple"
+guessed_letters = ['p', 'e']
+display = ""
 
-class AsyncFileReader:
-    def __init__(self, filename):
-        self.filename = filename
-        self.file = None
-        
-    async def __aiter__(self):
-        self.file = open(self.filename, 'r')
-        return self
-        
-    async def __anext__(self):
-        line = self.file.readline()
-        if not line:
-            self.file.close()
-            raise StopAsyncIteration
-        return line.strip()
+for letter in secret_word:
+    if letter in guessed_letters:
+        display += letter
+    else:
+        display += "_"
+# The loop is fine, but let's introduce a common mistake in game logic
+# For example, what if we only replace the *first* instance?
+display_word = "_" * len(secret_word)
+for letter in guessed_letters:
+    if letter in secret_word:
+        index = secret_word.find(letter)
+        display_word = display_word[:index] + letter + display_word[index+1:]
 
-# This async iterator has issues with cleanup on exceptions
-async def read_file():
-    async for line in AsyncFileReader("data.txt"):
-        print(line)
-
-# asyncio.run(read_file())  # Uncomment to test
+print(display_word) # This logic is flawed for repeated letters

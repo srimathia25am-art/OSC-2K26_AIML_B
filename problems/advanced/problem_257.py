@@ -1,40 +1,33 @@
 """
-Problem 257: Abstract base class with protocol implementation
+Problem 257: Simple Bank Account (Class)
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Define abstract interface with default implementation
-# Expected Output: Enforce interface while allowing partial implementation
+# Problem: A BankAccount class that allows overdrafts due to a logic flaw.
+# Expected Output: "Error: Insufficient funds."
 
-from abc import ABC, abstractmethod
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
 
-class DataProcessor(ABC):
-    @abstractmethod
-    def process(self, data):
-        pass
-    
-    def validate(self, data):
-        # Default implementation
-        return len(data) > 0
-    
-    def run(self, data):
-        if not self.validate(data):
-            raise ValueError("Invalid data")
-        return self.process(data)
+    def deposit(self, amount):
+        self.balance += amount
 
-class ConcreteProcessor(DataProcessor):
-    # Missing process() implementation but should it fail?
-    pass
+    def withdraw(self, amount):
+        if amount < self.balance: # Should be <=
+            self.balance -= amount
+            print("Withdrawal successful.")
+        else:
+            print("Error: Insufficient funds.")
 
-# This will fail but when?
-proc = ConcreteProcessor()
-result = proc.run([1, 2, 3])
+acc = BankAccount(100)
+acc.withdraw(100) # This should be allowed
+acc.withdraw(1)   # This should fail

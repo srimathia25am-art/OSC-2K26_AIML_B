@@ -1,21 +1,26 @@
 """
-Problem 35: Undefined variable usage
-Error Type: LOGICAL
+Problem 35: Simple Calculator
+Error Type: SYNTAX
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Calculate the area of a rectangle
-# Expected Output: Area = 50
+# Problem: A simple calculator with a syntax error.
+# Expected Output: The correct sum, e.g., 8 for 5 + 3.
 
-length = 10
-width = 5
-area = lenght * width
-print(f"Area = {area}")
+def calculate(a, b, op):
+    if op == '+':
+        return a + b
+    elif op == '-'
+        return a - b
+    else:
+        return "Unknown operation"
+
+result = calculate(5, 3, '+')
+print(result)

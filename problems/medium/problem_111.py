@@ -1,20 +1,34 @@
 """
-Problem 111: List comprehension with wrong variable scope
+Problem 111: Password Strength Checker
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Create a list of even squares from 1 to 10
-# Expected Output: [4, 16, 36, 64, 100]
+# Problem: A password checker that miscalculates the score.
+# Expected Output: "Strength: Medium"
 
-numbers = [x ** 2 for x in range(1, 11) if x % 2 == 0]
-result = [n for n in numbers if n % 2 == 0]
-print(result)
+def check_password_strength(password):
+    score = 0
+    if len(password) >= 8:
+        score += 1
+    if any(char.isdigit() for char in password):
+        score += 1
+    if any(char.isupper() for char in password):
+        score += 1
+    
+    # Logic error in score interpretation
+    if score == 3:
+        return "Strong"
+    elif score == 2:
+        return "Weak" # Should be Medium
+    else:
+        return "Medium" # Should be Weak
+
+print(f"Strength: {check_password_strength('Password123')}")

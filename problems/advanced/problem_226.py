@@ -1,34 +1,37 @@
 """
-Problem 226: Generator send() with exception handling
+Problem 226: Configuration File Parser
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement coroutine with proper exception handling
-# Expected Output: Should handle exceptions sent to generator
+# Problem: A script to parse a simple .ini style config file, but it handles sections incorrectly.
+# Expected Output: {'user': {'name': 'alice'}, 'database': {'host': 'localhost'}}
 
-def coroutine():
-    try:
-        while True:
-            value = yield
-            print(f"Received: {value}")
-    except GeneratorExit:
-        print("Coroutine closing")
-    finally:
-        print("Cleanup")
+config_text = """
+[user]
+name = alice
+[database]
+host = localhost
+"""
+def parse_config(text):
+    config = {}
+    current_section = None
+    for line in text.strip().split('\n'):
+        line = line.strip()
+        if line.startswith('[') and line.endswith(']'):
+            current_section = line[1:-1]
+            config[current_section] = {}
+        elif '=' in line and current_section:
+            key, value = line.split('=', 1)
+            # Logical error: assigns to the same dict every time
+            config[key.strip()] = value.strip()
+    return config
 
-# Use the coroutine - but sending exceptions has issues
-coro = coroutine()
-coro.send(None)  # Prime it
-coro.send(10)
-coro.send(20)
-coro.throw(ValueError, "Error")  # How to handle this?
-coro.close()
+print(parse_config(config_text))

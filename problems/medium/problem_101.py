@@ -1,22 +1,31 @@
 """
-Problem 101: Dictionary modification during iteration
+Problem 101: Student Grade Calculator
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Remove all items with value less than 5
-# Expected Output: {'c': 5, 'd': 10}
+# Problem: Calculate a student's final grade, but the grading scale is wrong.
+# Expected Output: "Grade: B"
 
-data = {'a': 1, 'b': 3, 'c': 5, 'd': 10}
-for key in data:
-    if data[key] < 5:
-        del data[key]
-print(data)
+scores = [85, 90, 88, 92]
+average = sum(scores) / len(scores)
+
+def get_grade(avg):
+    if avg >= 90:
+        return "A"
+    elif avg > 80: # Should be >= 80
+        return "B"
+    elif avg >= 70:
+        return "C"
+    else:
+        return "F"
+
+grade = get_grade(average)
+print(f"Grade: {grade}")

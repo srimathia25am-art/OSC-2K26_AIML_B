@@ -1,22 +1,19 @@
 """
-Problem 42: Forgotten return statement
+Problem 42: User Greeter
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Calculate square of a number
-# Expected Output: Square of 5 is 25
+# Problem: A script to greet a user, but it prints the wrong variable.
+# Expected Output: "Hello, Alice"
 
-def calculate_square(n):
-    result = n * n
-
-square = calculate_square(5)
-print(f"Square of 5 is {square}")
+name = "Alice"
+message = f"Hello, {name}"
+print("Hello, {name}")

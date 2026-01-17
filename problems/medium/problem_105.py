@@ -1,22 +1,24 @@
 """
-Problem 105: String formatting with wrong placeholder count
-Error Type: LOGICAL
+Problem 105: To-Do List
+Error Type: VALUE_ERROR
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Format a complete address
-# Expected Output: Name: Alice, Age: 25, City: Boston
+# Problem: Remove an item from a to-do list, but the item doesn't exist.
+# Expected Output: Should handle the error, e.g., print "Item not found."
 
-name = "Alice"
-age = 25
-city = "Boston"
-result = "Name: {}, Age: {}, City: {}".format(name, age)
-print(result)
+todo_list = ["laundry", "dishes", "shopping"]
+
+def remove_item(item):
+    todo_list.remove(item) # Raises ValueError if item is not in list
+    print(f"Removed '{item}'")
+
+remove_item("coding")
+print(todo_list)

@@ -1,38 +1,33 @@
 """
-Problem 294: Circular reference with __del__
+Problem 294: Simple Bank Account (Class)
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement a graph node with proper cleanup
-# Expected Output: Nodes should be cleaned up without memory leaks
+# Problem: A BankAccount class that allows overdrafts due to a logic flaw.
+# Expected Output: "Error: Insufficient funds."
 
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.neighbors = []
-        
-    def add_neighbor(self, node):
-        self.neighbors.append(node)
-        node.neighbors.append(self)
-        
-    def __del__(self):
-        print(f"Deleting node {self.value}")
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
 
-# Create circular reference
-a = Node(1)
-b = Node(2)
-a.add_neighbor(b)
+    def deposit(self, amount):
+        self.balance += amount
 
-# Try to delete - but __del__ might not be called
-del a
-del b
-print("Deleted nodes")
+    def withdraw(self, amount):
+        if amount < self.balance: # Should be <=
+            self.balance -= amount
+            print("Withdrawal successful.")
+        else:
+            print("Error: Insufficient funds.")
+
+acc = BankAccount(100)
+acc.withdraw(100) # This should be allowed
+acc.withdraw(1)   # This should fail

@@ -1,40 +1,34 @@
 """
-Problem 240: Weak reference with callback circular dependency
+Problem 240: Hangman Game Logic
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Use weak references to avoid memory leaks
-# Expected Output: Objects should be garbage collected
+# Problem: The core logic for a Hangman game that doesn't reveal all instances of a letter.
+# Expected Output: "_pp_e"
 
-import weakref
+secret_word = "apple"
+guessed_letters = ['p', 'e']
+display = ""
 
-class Observer:
-    def __init__(self, name):
-        self.name = name
-        self.subjects = []
-        
-    def observe(self, subject):
-        self.subjects.append(weakref.ref(subject, self.on_delete))
-        
-    def on_delete(self, ref):
-        print(f"{self.name}: Subject deleted")
-        self.subjects.remove(ref)
+for letter in secret_word:
+    if letter in guessed_letters:
+        display += letter
+    else:
+        display += "_"
+# The loop is fine, but let's introduce a common mistake in game logic
+# For example, what if we only replace the *first* instance?
+display_word = "_" * len(secret_word)
+for letter in guessed_letters:
+    if letter in secret_word:
+        index = secret_word.find(letter)
+        display_word = display_word[:index] + letter + display_word[index+1:]
 
-class Subject:
-    def __init__(self, value):
-        self.value = value
-
-# Setup observer - but callback creates circular reference
-obs = Observer("Watcher")
-subj = Subject(42)
-obs.observe(subj)
-del subj  # Will it be collected?
+print(display_word) # This logic is flawed for repeated letters

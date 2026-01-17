@@ -1,37 +1,34 @@
 """
-Problem 278: Context manager with improper cleanup
+Problem 278: Hangman Game Logic
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement a file lock context manager
-# Expected Output: Lock should be acquired and released properly
+# Problem: The core logic for a Hangman game that doesn't reveal all instances of a letter.
+# Expected Output: "_pp_e"
 
-class FileLock:
-    def __init__(self, filename):
-        self.filename = filename
-        self.lock_file = filename + ".lock"
-        
-    def __enter__(self):
-        import os
-        if os.path.exists(self.lock_file):
-            raise RuntimeError("Lock already held")
-        open(self.lock_file, 'w').close()
-        return self
-        
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        import os
-        os.remove(self.lock_file)
-        return False
+secret_word = "apple"
+guessed_letters = ['p', 'e']
+display = ""
 
-# This looks correct but what if __enter__ fails after creating the lock?
-with FileLock("data.txt") as lock:
-    print("Lock acquired")
+for letter in secret_word:
+    if letter in guessed_letters:
+        display += letter
+    else:
+        display += "_"
+# The loop is fine, but let's introduce a common mistake in game logic
+# For example, what if we only replace the *first* instance?
+display_word = "_" * len(secret_word)
+for letter in guessed_letters:
+    if letter in secret_word:
+        index = secret_word.find(letter)
+        display_word = display_word[:index] + letter + display_word[index+1:]
+
+print(display_word) # This logic is flawed for repeated letters

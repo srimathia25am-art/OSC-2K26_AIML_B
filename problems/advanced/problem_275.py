@@ -1,35 +1,34 @@
 """
-Problem 275: Dynamic class creation with type()
+Problem 275: Hangman Game Logic
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Create classes dynamically with proper initialization
-# Expected Output: Dynamically created class should work like normal class
+# Problem: The core logic for a Hangman game that doesn't reveal all instances of a letter.
+# Expected Output: "_pp_e"
 
-def create_class(name, base_value):
-    def __init__(self, value):
-        self.value = value + base_value
-    
-    def get_value(self):
-        return self.value
-    
-    return type(name, (), {
-        '__init__': __init__,
-        'get_value': get_value,
-        'base': base_value
-    })
+secret_word = "apple"
+guessed_letters = ['p', 'e']
+display = ""
 
-# Create and use dynamic class - method binding issue?
-MyClass = create_class('MyClass', 10)
-obj = MyClass(5)
-print(obj.get_value())  # Should be 15
-print(obj.base)         # Should be 10
+for letter in secret_word:
+    if letter in guessed_letters:
+        display += letter
+    else:
+        display += "_"
+# The loop is fine, but let's introduce a common mistake in game logic
+# For example, what if we only replace the *first* instance?
+display_word = "_" * len(secret_word)
+for letter in guessed_letters:
+    if letter in secret_word:
+        index = secret_word.find(letter)
+        display_word = display_word[:index] + letter + display_word[index+1:]
+
+print(display_word) # This logic is flawed for repeated letters

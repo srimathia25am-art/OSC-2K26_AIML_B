@@ -1,38 +1,34 @@
 """
-Problem 234: Circular reference with __del__
+Problem 234: Hangman Game Logic
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement a graph node with proper cleanup
-# Expected Output: Nodes should be cleaned up without memory leaks
+# Problem: The core logic for a Hangman game that doesn't reveal all instances of a letter.
+# Expected Output: "_pp_e"
 
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.neighbors = []
-        
-    def add_neighbor(self, node):
-        self.neighbors.append(node)
-        node.neighbors.append(self)
-        
-    def __del__(self):
-        print(f"Deleting node {self.value}")
+secret_word = "apple"
+guessed_letters = ['p', 'e']
+display = ""
 
-# Create circular reference
-a = Node(1)
-b = Node(2)
-a.add_neighbor(b)
+for letter in secret_word:
+    if letter in guessed_letters:
+        display += letter
+    else:
+        display += "_"
+# The loop is fine, but let's introduce a common mistake in game logic
+# For example, what if we only replace the *first* instance?
+display_word = "_" * len(secret_word)
+for letter in guessed_letters:
+    if letter in secret_word:
+        index = secret_word.find(letter)
+        display_word = display_word[:index] + letter + display_word[index+1:]
 
-# Try to delete - but __del__ might not be called
-del a
-del b
-print("Deleted nodes")
+print(display_word) # This logic is flawed for repeated letters

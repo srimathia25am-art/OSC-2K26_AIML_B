@@ -1,25 +1,23 @@
 """
-Problem 125: Dictionary get with mutable default value
+Problem 125: Email Validator
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Count character frequencies in a string
-# Expected Output: Correct frequency count
+# Problem: A simple email validator that is too strict.
+# Expected Output: True
 
-def count_chars(text):
-    freq = {}
-    for char in text:
-        freq[char] = freq.get(char, 0) + 1
-    return freq
+def is_valid_email(email):
+    # This logic is flawed, it doesn't account for subdomains or other characters
+    if "@" in email and "." in email.split('@')[1]:
+        return True
+    return False
 
-result = count_chars("hello")
-print(result)  # This works, but try with edge cases
+print(is_valid_email("test@example.co.uk"))

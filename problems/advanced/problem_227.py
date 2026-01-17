@@ -1,40 +1,33 @@
 """
-Problem 227: Abstract base class with protocol implementation
-Error Type: LOGICAL
+Problem 227: JSON Data Processor
+Error Type: TYPE_ERROR
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Define abstract interface with default implementation
-# Expected Output: Enforce interface while allowing partial implementation
+# Problem: Read JSON data from a file and process it, but assume a wrong data structure.
+# Expected Output: "Processed 2 records."
 
-from abc import ABC, abstractmethod
+import json
 
-class DataProcessor(ABC):
-    @abstractmethod
-    def process(self, data):
-        pass
-    
-    def validate(self, data):
-        # Default implementation
-        return len(data) > 0
-    
-    def run(self, data):
-        if not self.validate(data):
-            raise ValueError("Invalid data")
-        return self.process(data)
+# Assume data.json contains: {"records": [{"id": 1}, {"id": 2}]}
+json_data = '{"records": [{"id": 1}, {"id": 2}]}'
+with open("data.json", "w") as f:
+    f.write(json_data)
 
-class ConcreteProcessor(DataProcessor):
-    # Missing process() implementation but should it fail?
-    pass
+def process_records(filename):
+    with open(filename, 'r') as f:
+        data = json.load(f)
+        # TypeError: 'dict' object is not iterable. Should be data['records']
+        for record in data:
+            print(f"Processing record id: {record['id']}")
+    print(f"Processed {len(data)} records.")
 
-# This will fail but when?
-proc = ConcreteProcessor()
-result = proc.run([1, 2, 3])
+process_records("data.json")
+os.remove("data.json")

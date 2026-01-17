@@ -1,20 +1,20 @@
 """
-Problem 34: Missing colon after for loop
-Error Type: SYNTAX
+Problem 34: String Repeater
+Error Type: TYPE
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Print numbers from 1 to 5
-# Expected Output: 1 2 3 4 5
+# Problem: Repeat a string multiple times, but the multiplier is a string.
+# Expected Output: "ababab"
 
-for i in range(1, 6)
-    print(i, end=" ")
-print()
+text = "ab"
+times = "3"
+result = text * times
+print(result)

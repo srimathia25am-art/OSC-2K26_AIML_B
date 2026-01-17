@@ -1,25 +1,26 @@
 """
-Problem 1: Missing colon after if statement
+Problem 1: Simple Calculator
 Error Type: SYNTAX
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Calculate if a number is even or odd
-# Expected Output: "Even" for even numbers, "Odd" for odd numbers
+# Problem: A simple calculator with a syntax error.
+# Expected Output: The correct sum, e.g., 8 for 5 + 3.
 
-def check_even_odd(number)
-    if number % 2 == 0:
-        return "Even"
+def calculate(a, b, op):
+    if op == '+':
+        return a + b
+    elif op == '-'
+        return a - b
     else:
-        return "Odd"
+        return "Unknown operation"
 
-result = check_even_odd(10)
+result = calculate(5, 3, '+')
 print(result)

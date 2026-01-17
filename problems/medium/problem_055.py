@@ -1,22 +1,24 @@
 """
-Problem 55: Incorrect use of is vs ==
-Error Type: LOGICAL
+Problem 55: To-Do List
+Error Type: VALUE_ERROR
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Check if two numbers are equal
-# Expected Output: True for equal numbers
+# Problem: Remove an item from a to-do list, but the item doesn't exist.
+# Expected Output: Should handle the error, e.g., print "Item not found."
 
-def are_equal(a, b):
-    return a is b
+todo_list = ["laundry", "dishes", "shopping"]
 
-print(are_equal(1000, 1000))  # Should print True
-print(are_equal(5, 5))
+def remove_item(item):
+    todo_list.remove(item) # Raises ValueError if item is not in list
+    print(f"Removed '{item}'")
+
+remove_item("coding")
+print(todo_list)

@@ -1,22 +1,25 @@
 """
-Problem 99: Modifying list while iterating
-Error Type: LOGICAL
+Problem 99: File Word Counter
+Error Type: FILE_NOT_FOUND
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Remove all negative numbers from list
-# Expected Output: [1, 2, 3, 4, 5]
+# Problem: Read a file and count words, but the file path is wrong.
+# Expected Output: Should handle the FileNotFoundError.
 
-numbers = [-1, 1, -2, 2, -3, 3, 4, -4, 5]
-for num in numbers:
-    if num < 0:
-        numbers.remove(num)
-print(numbers)
+def count_words_in_file(filename):
+    try:
+        with open(filename, 'r') as f:
+            words = f.read().split()
+            print(f"Word count: {len(words)}")
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+
+count_words_in_file("data.txt") # Assumes this file doesn't exist

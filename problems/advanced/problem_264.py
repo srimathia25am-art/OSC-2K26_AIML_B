@@ -1,38 +1,37 @@
 """
-Problem 264: Circular reference with __del__
+Problem 264: Configuration File Parser
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement a graph node with proper cleanup
-# Expected Output: Nodes should be cleaned up without memory leaks
+# Problem: A script to parse a simple .ini style config file, but it handles sections incorrectly.
+# Expected Output: {'user': {'name': 'alice'}, 'database': {'host': 'localhost'}}
 
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.neighbors = []
-        
-    def add_neighbor(self, node):
-        self.neighbors.append(node)
-        node.neighbors.append(self)
-        
-    def __del__(self):
-        print(f"Deleting node {self.value}")
+config_text = """
+[user]
+name = alice
+[database]
+host = localhost
+"""
+def parse_config(text):
+    config = {}
+    current_section = None
+    for line in text.strip().split('\n'):
+        line = line.strip()
+        if line.startswith('[') and line.endswith(']'):
+            current_section = line[1:-1]
+            config[current_section] = {}
+        elif '=' in line and current_section:
+            key, value = line.split('=', 1)
+            # Logical error: assigns to the same dict every time
+            config[key.strip()] = value.strip()
+    return config
 
-# Create circular reference
-a = Node(1)
-b = Node(2)
-a.add_neighbor(b)
-
-# Try to delete - but __del__ might not be called
-del a
-del b
-print("Deleted nodes")
+print(parse_config(config_text))

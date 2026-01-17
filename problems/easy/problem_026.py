@@ -1,20 +1,20 @@
 """
-Problem 26: Wrong list indexing
+Problem 26: Area of a Rectangle
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Get the first element of a list
-# Expected Output: First element is 10
+# Problem: Calculate the area of a rectangle, but the formula is wrong.
+# Expected Output: 50
 
-numbers = [10, 20, 30, 40, 50]
-first_element = numbers[1]
-print(f"First element is {first_element}")
+length = 10
+width = 5
+area = length + width  # Incorrect formula
+print(area)

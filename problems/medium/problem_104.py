@@ -1,21 +1,23 @@
 """
-Problem 104: Set operations with wrong method
+Problem 104: Word Counter
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Find common elements between two lists
-# Expected Output: [3, 4, 5]
+# Problem: Count word frequencies in a text, but it's case-sensitive.
+# Expected Output: {'hello': 2, 'world': 1}
 
-list1 = [1, 2, 3, 4, 5]
-list2 = [3, 4, 5, 6, 7]
-common = list(set(list1).union(set(list2)))
-print(sorted(common))
+text = "Hello hello world"
+word_counts = {}
+for word in text.split():
+    # This logic is case-sensitive
+    word_counts[word] = word_counts.get(word, 0) + 1
+
+print(word_counts)

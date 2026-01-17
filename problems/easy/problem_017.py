@@ -1,19 +1,26 @@
 """
-Problem 17: Missing parentheses in print statement
+Problem 17: Simple Calculator
 Error Type: SYNTAX
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Print a greeting message
-# Expected Output: Hello, World!
+# Problem: A simple calculator with a syntax error.
+# Expected Output: The correct sum, e.g., 8 for 5 + 3.
 
-message = "Hello, World!"
-print message
+def calculate(a, b, op):
+    if op == '+':
+        return a + b
+    elif op == '-'
+        return a - b
+    else:
+        return "Unknown operation"
+
+result = calculate(5, 3, '+')
+print(result)

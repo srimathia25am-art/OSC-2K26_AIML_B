@@ -1,39 +1,33 @@
 """
-Problem 281: Descriptor protocol with incorrect attribute access
+Problem 281: Simple Bank Account (Class)
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement a validated attribute descriptor
-# Expected Output: Should validate on assignment
+# Problem: A BankAccount class that allows overdrafts due to a logic flaw.
+# Expected Output: "Error: Insufficient funds."
 
-class Positive:
-    def __init__(self, name):
-        self.name = name
-        
-    def __get__(self, obj, objtype=None):
-        return obj.__dict__.get(self.name, 0)
-        
-    def __set__(self, obj, value):
-        if value < 0:
-            raise ValueError(f"{self.name} must be positive")
-        obj.__dict__[self.name] = value
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
 
-class Account:
-    balance = Positive("balance")
-    
-    def __init__(self, initial_balance):
-        self.balance = initial_balance
+    def deposit(self, amount):
+        self.balance += amount
 
-# Test it - but there's an issue with the implementation
-acc = Account(100)
-print(acc.balance)
-acc.balance = -50  # Should raise error
+    def withdraw(self, amount):
+        if amount < self.balance: # Should be <=
+            self.balance -= amount
+            print("Withdrawal successful.")
+        else:
+            print("Error: Insufficient funds.")
+
+acc = BankAccount(100)
+acc.withdraw(100) # This should be allowed
+acc.withdraw(1)   # This should fail

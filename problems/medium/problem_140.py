@@ -1,25 +1,34 @@
 """
-Problem 140: Dictionary get with mutable default value
+Problem 140: Password Strength Checker
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Count character frequencies in a string
-# Expected Output: Correct frequency count
+# Problem: A password checker that miscalculates the score.
+# Expected Output: "Strength: Medium"
 
-def count_chars(text):
-    freq = {}
-    for char in text:
-        freq[char] = freq.get(char, 0) + 1
-    return freq
+def check_password_strength(password):
+    score = 0
+    if len(password) >= 8:
+        score += 1
+    if any(char.isdigit() for char in password):
+        score += 1
+    if any(char.isupper() for char in password):
+        score += 1
+    
+    # Logic error in score interpretation
+    if score == 3:
+        return "Strong"
+    elif score == 2:
+        return "Weak" # Should be Medium
+    else:
+        return "Medium" # Should be Weak
 
-result = count_chars("hello")
-print(result)  # This works, but try with edge cases
+print(f"Strength: {check_password_strength('Password123')}")

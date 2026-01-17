@@ -1,25 +1,25 @@
 """
-Problem 65: Dictionary get with mutable default value
-Error Type: LOGICAL
+Problem 65: File Word Counter
+Error Type: FILE_NOT_FOUND
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Count character frequencies in a string
-# Expected Output: Correct frequency count
+# Problem: Read a file and count words, but the file path is wrong.
+# Expected Output: Should handle the FileNotFoundError.
 
-def count_chars(text):
-    freq = {}
-    for char in text:
-        freq[char] = freq.get(char, 0) + 1
-    return freq
+def count_words_in_file(filename):
+    try:
+        with open(filename, 'r') as f:
+            words = f.read().split()
+            print(f"Word count: {len(words)}")
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
 
-result = count_chars("hello")
-print(result)  # This works, but try with edge cases
+count_words_in_file("data.txt") # Assumes this file doesn't exist

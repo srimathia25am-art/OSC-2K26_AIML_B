@@ -1,42 +1,33 @@
 """
-Problem 262: Decorator with arguments and state
-Error Type: LOGICAL
+Problem 262: JSON Data Processor
+Error Type: TYPE_ERROR
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Create a retry decorator with exponential backoff
-# Expected Output: Function should retry on failure with increasing delays
+# Problem: Read JSON data from a file and process it, but assume a wrong data structure.
+# Expected Output: "Processed 2 records."
 
-import time
+import json
 
-def retry(max_attempts=3):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            for attempt in range(max_attempts):
-                try:
-                    return func(*args, **kwargs)
-                except Exception as e:
-                    if attempt == max_attempts - 1:
-                        raise
-                    time.sleep(2 ** attempt)
-        return wrapper
-    return decorator
+# Assume data.json contains: {"records": [{"id": 1}, {"id": 2}]}
+json_data = '{"records": [{"id": 1}, {"id": 2}]}'
+with open("data.json", "w") as f:
+    f.write(json_data)
 
-@retry(max_attempts=3)
-def unreliable_function():
-    import random
-    if random.random() < 0.7:
-        raise ValueError("Random failure")
-    return "Success"
+def process_records(filename):
+    with open(filename, 'r') as f:
+        data = json.load(f)
+        # TypeError: 'dict' object is not iterable. Should be data['records']
+        for record in data:
+            print(f"Processing record id: {record['id']}")
+    print(f"Processed {len(data)} records.")
 
-# Test it - but there's a subtle bug with the attempts
-result = unreliable_function()
-print(result)
+process_records("data.json")
+os.remove("data.json")

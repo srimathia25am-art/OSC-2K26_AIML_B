@@ -1,19 +1,20 @@
 """
-Problem 29: Mismatched brackets
-Error Type: SYNTAX
+Problem 29: Simple Discount
+Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Create a list of squares
-# Expected Output: [1, 4, 9, 16, 25]
+# Problem: Calculate a discount, but the percentage is wrong.
+# Expected Output: 90.0
 
-squares = [i ** 2 for i in range(1, 6)}
-print(squares)
+price = 100
+discount_percent = 10
+discounted_price = price * (1 - discount_percent) # Should be discount_percent / 100
+print(discounted_price)

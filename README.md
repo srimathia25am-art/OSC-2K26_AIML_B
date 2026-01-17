@@ -1,128 +1,88 @@
-# 🚀 Open Source Connect - PyExpo 2026
+# 🐍 OSC-2K26 PyExpo Event
 
-Welcome to the **Open Source Connect** repository! This is a learning project designed for PyExpo 2026 to help students learn Git, GitHub, and collaborative coding practices.
+Welcome to the Open Source Connect 2026 application repository! This project is designed to help you get started with Open Source contributions, Git, GitHub, and practical Python programming.
 
-## 📚 About This Repository
-
-This repository contains Python programming challenges with intentional errors for students to find and fix. It's designed to teach:
-- Git and GitHub basics
-- How to contribute to open-source projects
-- Debugging skills in Python
-- Collaborative development practices
-
-## 📁 Repository Structure
-
-```
-OSC-2K26/
-├── README.md          # This file
-├── README/            # Additional documentation
-└── problems/          # Programming challenges
-    ├── easy/          # 50 beginner-friendly problems
-    ├── medium/        # 150 intermediate problems
-    └── advanced/      # 100 expert-level problems
-```
-
-## 🎯 Challenge Levels
-
-### Easy Level (50 Problems) 🟢
-- Simple syntax errors (missing colons, incorrect indentation, typos)
-- Basic logical errors (wrong operators, off-by-one errors)
-- Simple runtime errors (type mismatches, undefined variables)
-- Perfect for absolute beginners and first-time contributors
-
-### Medium Level (150 Problems) 🟡
-- String immutability issues
-- List/dictionary modification during iteration
-- Lambda function closure problems
-- Type confusion and operator precedence
-- Requires understanding of Python fundamentals
-
-### Advanced Level (100 Problems) 🔴
-- Metaclasses and descriptors
-- Context managers and decorators
-- Thread safety and concurrency issues
-- Memory management and circular references
-- Requires deep understanding of Python internals
-
-## 🚀 How to Contribute
-
-### Prerequisites
-- Git installed on your computer
-- GitHub account
-- Basic Python knowledge
-
-### Step-by-Step Guide
-
-1. **Fork this repository**
-   - Click the "Fork" button at the top right of this page
-
-2. **Clone your fork**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/OSC-2K26.git
-   cd OSC-2K26
-   ```
-
-3. **Create a new branch**
-   ```bash
-   git checkout -b fix/problem-name
-   ```
-
-4. **Find and fix a problem**
-   - Navigate to `problems/medium/` or `problems/advanced/`
-   - Choose a problem file
-   - Read the comments to understand the expected output
-   - Fix the errors in the code
-   - Test your solution
-
-5. **Commit your changes**
-   ```bash
-   git add problems/medium/problem_01.py  # or the file you fixed
-   git commit -m "Fix: Resolved syntax error in problem_01.py"
-   ```
-
-6. **Push to your fork**
-   ```bash
-   git push origin fix/problem-name
-   ```
-
-7. **Create a Pull Request**
-   - Go to your fork on GitHub
-   - Click "New Pull Request"
-   - Add a description of what you fixed
-   - Submit the PR
-
-## 📝 Contribution Guidelines
-
-- **One problem per PR**: Fix only one problem file per pull request
-- **Test your solution**: Make sure your fix produces the correct output
-- **Clear commit messages**: Use descriptive commit messages
-- **Preserve comments**: Don't remove the problem description comments
-- **Follow Python style**: Use PEP 8 style guidelines
-
-## 🏆 Recognition
-
-All contributors will be listed in our [CONTRIBUTORS.md](CONTRIBUTORS.md) file!
-
-## 🤝 Code of Conduct
-
-- Be respectful and inclusive
-- Help fellow students learn
-- Ask questions if you're stuck
-- Share your knowledge
-
-## 📞 Contact
-
-For questions or help:
-- Create an issue in this repository
-- Contact the PyExpo organizing team
-- Join our community discussions
-
-## 📜 License
-
-This project is open source and available for educational purposes.
+Follow this step-by-step guide to participate in the event.
 
 ---
 
-**Happy Coding! 🎉**
+## 🚀 Participation Guide
 
-Made with ❤️ for PyExpo 2026 - Open Source Connect
+### 1️⃣ Fork the Repository
+1.  Click the **Fork** button at the top right corner of this repository page.
+2.  This creates a copy of this repository in your own GitHub account.
+
+### 2️⃣ Clone the Repository
+1.  Go to your forked repository.
+2.  Click the **Code** button and copy the URL.
+3.  Open your terminal or Git Bash.
+4.  Run the following command:
+    ```bash
+    git clone <your-forked-repo-url>
+    ```
+5.  Navigate into the project folder:
+    ```bash
+    cd OSC-2K26
+    ```
+
+---
+
+### 3️⃣ Step 1: Registration (First Contribution)
+1.  Navigate to the `readme/` folder.
+2.  Open the `CONTRIBUTORS.md` file.
+3.  Add your **Name** and **Roll Number** to the table.
+4.  Save the file.
+5.  Commit and push your changes:
+    ```bash
+    git add readme/CONTRIBUTORS.md
+    git commit -m "Added <Your Name> to contributors list"
+    git push origin main
+    ```
+
+---
+
+### 4️⃣ Step 2: Solve Problems (Debugging)
+1.  Navigate to the `problems/` folder.
+2.  Choose a problem from `easy`, `medium`, or `advanced` folders.
+3.  Read the problem description and run the code to see the error.
+4.  Fix the logical or syntax error to produce the expected output.
+5.  Verify your solution.
+6.  Commit and push your solution:
+    ```bash
+    git add problems/<difficulty>/<problem_file>.py
+    git commit -m "Fixed problem <number>"
+    git push origin main
+    ```
+
+---
+
+### 5️⃣ Create an Issue
+Before submitting your work, it's good practice to create an issue to track your contribution.
+1.  Go to the **Issues** tab in the original repository (not your fork).
+2.  Click **New Issue**.
+3.  Give it a title like "Fixed Problem #XYZ" or "Added details to Contributors".
+4.  Describe what you are working on.
+5.  Submit the issue and note the Issue Number (e.g., #12).
+
+---
+
+### 6️⃣ Create a Pull Request (PR)
+Once you have pushed your changes to your fork, it's time to submit them to the main repository.
+1.  Go to your forked repository on GitHub.
+2.  You should see a banner saying "This branch is 'N' commits ahead of...". Click **Contribute** > **Open Pull Request**.
+3.  If you don't see the banner, go to the **Pull requests** tab and click **New pull request**.
+4.  Ensure the "base repository" is the original repo and "head repository" is your fork.
+5.  Click **Create pull request**.
+6.  In the description, link the issue you created (e.g., "Closes #12").
+7.  Click **Create pull request** to submit.
+
+---
+
+## 📂 Repository Structure
+- `readme/`: Area for your first contribution (Registration).
+- `problems/`: Contains 300+ practical Python problems to solve.
+  - `easy/`: Beginners start here.
+  - `medium/`: Intermediate practical scenarios.
+  - `advanced/`: Complex application logic.
+
+Happy Coding! 💻

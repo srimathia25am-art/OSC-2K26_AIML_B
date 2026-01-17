@@ -1,20 +1,23 @@
 """
-Problem 4: Missing colon after for loop
-Error Type: SYNTAX
+Problem 4: Number Counter
+Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Print numbers from 1 to 5
-# Expected Output: 1 2 3 4 5
+# Problem: A loop to count from 1 to 5, but the range is incorrect.
+# Expected Output:
+# 1
+# 2
+# 3
+# 4
+# 5
 
-for i in range(1, 6)
-    print(i, end=" ")
-print()
+for i in range(5):
+    print(i)

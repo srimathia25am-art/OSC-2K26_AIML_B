@@ -1,40 +1,33 @@
 """
-Problem 270: Weak reference with callback circular dependency
+Problem 270: Simple Bank Account (Class)
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Use weak references to avoid memory leaks
-# Expected Output: Objects should be garbage collected
+# Problem: A BankAccount class that allows overdrafts due to a logic flaw.
+# Expected Output: "Error: Insufficient funds."
 
-import weakref
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
 
-class Observer:
-    def __init__(self, name):
-        self.name = name
-        self.subjects = []
-        
-    def observe(self, subject):
-        self.subjects.append(weakref.ref(subject, self.on_delete))
-        
-    def on_delete(self, ref):
-        print(f"{self.name}: Subject deleted")
-        self.subjects.remove(ref)
+    def deposit(self, amount):
+        self.balance += amount
 
-class Subject:
-    def __init__(self, value):
-        self.value = value
+    def withdraw(self, amount):
+        if amount < self.balance: # Should be <=
+            self.balance -= amount
+            print("Withdrawal successful.")
+        else:
+            print("Error: Insufficient funds.")
 
-# Setup observer - but callback creates circular reference
-obs = Observer("Watcher")
-subj = Subject(42)
-obs.observe(subj)
-del subj  # Will it be collected?
+acc = BankAccount(100)
+acc.withdraw(100) # This should be allowed
+acc.withdraw(1)   # This should fail

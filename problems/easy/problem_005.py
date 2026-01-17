@@ -1,21 +1,18 @@
 """
-Problem 5: Undefined variable usage
-Error Type: LOGICAL
+Problem 5: Shopping List
+Error Type: SYNTAX
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Calculate the area of a rectangle
-# Expected Output: Area = 50
+# Problem: A simple shopping list with a missing comma.
+# Expected Output: A list of strings: ['apples', 'bananas', 'carrots']
 
-length = 10
-width = 5
-area = lenght * width
-print(f"Area = {area}")
+items = ["apples", "bananas" "carrots"]
+print(items)

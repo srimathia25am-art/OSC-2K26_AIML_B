@@ -1,22 +1,18 @@
 """
-Problem 13: Wrong boolean operator
-Error Type: LOGICAL
+Problem 13: Shopping List
+Error Type: SYNTAX
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
-Difficulty: Medium
+Difficulty: Easy
 """
 
-# Problem: Check if number is between 10 and 20
-# Expected Output: True for numbers between 10 and 20
+# Problem: A simple shopping list with a missing comma.
+# Expected Output: A list of strings: ['apples', 'bananas', 'carrots']
 
-def is_in_range(num):
-    return num >= 10 or num <= 20
-
-print(is_in_range(5))  # Should be False
-print(is_in_range(15))  # Should be True
+items = ["apples", "bananas" "carrots"]
+print(items)

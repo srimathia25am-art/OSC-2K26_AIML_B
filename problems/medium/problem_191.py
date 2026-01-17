@@ -1,22 +1,24 @@
 """
-Problem 191: Dictionary modification during iteration
-Error Type: LOGICAL
+Problem 191: Simple Inventory Manager
+Error Type: KEY_ERROR
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Remove all items with value less than 5
-# Expected Output: {'c': 5, 'd': 10}
+# Problem: Update an item count in an inventory, but the item doesn't exist.
+# Expected Output: Should handle the missing item gracefully, e.g., by adding it.
 
-data = {'a': 1, 'b': 3, 'c': 5, 'd': 10}
-for key in data:
-    if data[key] < 5:
-        del data[key]
-print(data)
+inventory = {"apples": 10, "bananas": 20}
+
+def update_stock(item, quantity):
+    inventory[item] += quantity # Fails if item is not in inventory
+    print(f"Updated {item} to {inventory[item]}")
+
+update_stock("oranges", 5)
+print(inventory)

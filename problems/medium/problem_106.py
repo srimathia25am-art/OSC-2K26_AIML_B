@@ -1,23 +1,25 @@
 """
-Problem 106: Lambda function with late binding
-Error Type: LOGICAL
+Problem 106: File Word Counter
+Error Type: FILE_NOT_FOUND
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Create functions that multiply by 1, 2, 3
-# Expected Output: [10, 20, 30]
+# Problem: Read a file and count words, but the file path is wrong.
+# Expected Output: Should handle the FileNotFoundError.
 
-multipliers = []
-for i in [1, 2, 3]:
-    multipliers.append(lambda x: x * i)
+def count_words_in_file(filename):
+    try:
+        with open(filename, 'r') as f:
+            words = f.read().split()
+            print(f"Word count: {len(words)}")
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
 
-results = [func(10) for func in multipliers]
-print(results)
+count_words_in_file("data.txt") # Assumes this file doesn't exist

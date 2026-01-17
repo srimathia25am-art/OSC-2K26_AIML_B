@@ -1,37 +1,33 @@
 """
-Problem 293: Context manager with improper cleanup
+Problem 293: Simple Bank Account (Class)
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement a file lock context manager
-# Expected Output: Lock should be acquired and released properly
+# Problem: A BankAccount class that allows overdrafts due to a logic flaw.
+# Expected Output: "Error: Insufficient funds."
 
-class FileLock:
-    def __init__(self, filename):
-        self.filename = filename
-        self.lock_file = filename + ".lock"
-        
-    def __enter__(self):
-        import os
-        if os.path.exists(self.lock_file):
-            raise RuntimeError("Lock already held")
-        open(self.lock_file, 'w').close()
-        return self
-        
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        import os
-        os.remove(self.lock_file)
-        return False
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
 
-# This looks correct but what if __enter__ fails after creating the lock?
-with FileLock("data.txt") as lock:
-    print("Lock acquired")
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        if amount < self.balance: # Should be <=
+            self.balance -= amount
+            print("Withdrawal successful.")
+        else:
+            print("Error: Insufficient funds.")
+
+acc = BankAccount(100)
+acc.withdraw(100) # This should be allowed
+acc.withdraw(1)   # This should fail

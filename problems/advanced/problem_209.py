@@ -1,40 +1,37 @@
 """
-Problem 209: Multiple inheritance with super() ambiguity
+Problem 209: Configuration File Parser
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Advanced
 """
 
-# Problem: Implement diamond inheritance correctly
-# Expected Output: All classes should be initialized once
+# Problem: A script to parse a simple .ini style config file, but it handles sections incorrectly.
+# Expected Output: {'user': {'name': 'alice'}, 'database': {'host': 'localhost'}}
 
-class A:
-    def __init__(self):
-        print("A init")
-        super().__init__()
+config_text = """
+[user]
+name = alice
+[database]
+host = localhost
+"""
+def parse_config(text):
+    config = {}
+    current_section = None
+    for line in text.strip().split('\n'):
+        line = line.strip()
+        if line.startswith('[') and line.endswith(']'):
+            current_section = line[1:-1]
+            config[current_section] = {}
+        elif '=' in line and current_section:
+            key, value = line.split('=', 1)
+            # Logical error: assigns to the same dict every time
+            config[key.strip()] = value.strip()
+    return config
 
-class B(A):
-    def __init__(self):
-        print("B init")
-        super().__init__()
-
-class C(A):
-    def __init__(self):
-        print("C init")
-        super().__init__()
-
-class D(B, C):
-    def __init__(self):
-        print("D init")
-        super().__init__()
-
-# MRO is correct but initialization order?
-d = D()
-print("MRO:", [c.__name__ for c in D.__mro__])
+print(parse_config(config_text))

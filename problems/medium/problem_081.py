@@ -1,20 +1,27 @@
 """
-Problem 81: List comprehension with wrong variable scope
+Problem 81: Simple ATM
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Create a list of even squares from 1 to 10
-# Expected Output: [4, 16, 36, 64, 100]
+# Problem: A simple ATM withdrawal function with a logic flaw.
+# Expected Output: "Withdrawal successful. New balance: 50"
 
-numbers = [x ** 2 for x in range(1, 11) if x % 2 == 0]
-result = [n for n in numbers if n % 2 == 0]
-print(result)
+balance = 100
+
+def withdraw(amount):
+    global balance
+    if balance > amount: # Should be balance >= amount
+        balance -= amount
+        print(f"Withdrawal successful. New balance: {balance}")
+    else:
+        print("Insufficient funds.")
+
+withdraw(100)

@@ -1,22 +1,23 @@
 """
-Problem 75: String formatting with wrong placeholder count
+Problem 75: Email Validator
 Error Type: LOGICAL
 
 Instructions:
-1. Read the code and comments carefully
-2. Identify the error(s)
-3. Fix the error(s)
-4. Test your solution
-5. Ensure the output matches the expected output
+This is a practical problem. Read the code and comments to understand the goal.
+1. Identify the bug that is causing the incorrect output.
+2. Fix the bug.
+3. Run the script to ensure it now produces the expected output.
 
 Difficulty: Medium
 """
 
-# Problem: Format a complete address
-# Expected Output: Name: Alice, Age: 25, City: Boston
+# Problem: A simple email validator that is too strict.
+# Expected Output: True
 
-name = "Alice"
-age = 25
-city = "Boston"
-result = "Name: {}, Age: {}, City: {}".format(name, age)
-print(result)
+def is_valid_email(email):
+    # This logic is flawed, it doesn't account for subdomains or other characters
+    if "@" in email and "." in email.split('@')[1]:
+        return True
+    return False
+
+print(is_valid_email("test@example.co.uk"))
